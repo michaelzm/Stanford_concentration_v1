@@ -12,40 +12,30 @@ class ViewController: UIViewController
 {
 
     var flipCount = 0 {
-        //property observer
         didSet {
-        flipCountLabel.text = "Flips: \(flipCount)"
+        flipCountLabel.text = "🤕: \(flipCount)"
         }
     }
-    //muss nicht initialisiert werden, ! sehr wichtig
     @IBOutlet weak var flipCountLabel: UILabel!
     
-    var emojiChoices = ["🎃","👻","🎃","👻"]
-    //Array UIButton
+    var emojiChoices = ["🍺","🍺🍺","🍺🍺🍺","🍺🍺"]
     @IBOutlet var cardButtons: [UIButton]!
-    
-    //! = assume optional is set and grab associated value
-    //unwrap optionals with if
-    //nil=optional not set
+
+    var randomNumber: Int {
+        return Int(arc4random_uniform(UInt32(3)) + UInt32(0));
+    }
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
-        if let cardNumber = cardButtons.index(of: sender){
-            flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
-        }
+            flipCard(withEmoji: emojiChoices[randomNumber], on: sender)
+        
     }
 
-    //should be read just like an english sentence
     func flipCard(withEmoji emoji: String, on button: UIButton){
         print("flipCardwithEmoji: \(emoji))")
-        if button.currentTitle == emoji {
-            button.setTitle("", for: UIControlState.normal)
-            button.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-        } else {
             button.setTitle(emoji, for: UIControlState.normal)
-            button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
-    }
     
 }
 
