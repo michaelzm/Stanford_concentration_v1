@@ -35,7 +35,6 @@ class ViewController: UIViewController
         print("flipCardwithEmoji: \(emoji))")
             button.setTitle(emoji, for: UIControlState.normal)
             button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        }
-    
+    }
 }
 
